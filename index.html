@@ -32,18 +32,24 @@ header .wrap{padding-block:10px 12px;display:grid;gap:10px}
 .crest{width:34px;height:34px;border-radius:50%;background:var(--hbk);border:2px solid var(--gold);display:grid;place-items:center;font:800 11px var(--display);letter-spacing:.04em;flex:none;color:#fff}
 .back{background:none;border:0;color:#fff;font:800 22px var(--display);padding:0 6px 0 0;line-height:1}
 .ttl{font:800 16px var(--display);letter-spacing:.02em;line-height:1.15;min-width:0}
+.ttl small:empty{display:none}
 .ttl small{display:block;font:400 12px var(--body);opacity:.75;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sync{margin-left:auto;font-size:11px;opacity:.85;display:flex;align-items:center;gap:6px;white-space:nowrap;background:none;border:0;color:#fff}
-.sync i{width:8px;height:8px;border-radius:50%;background:var(--mist)}
+.sync{margin-left:auto;font-size:12px;opacity:.9;padding:6px 0 6px 8px;max-width:40%;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;white-space:nowrap;background:none;border:0;color:#fff}
+.sync i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--mist)}
 .sync.on i{background:#5fd38d}.sync.off i{background:#ff8a80}
 .iconbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:7px 10px;font-size:13px;white-space:nowrap}
 .clocks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .clock{background:rgba(255,255,255,.06);border-radius:12px;padding:8px 12px}
+.clock.tap{border:0;color:#fff;text-align:left;display:grid;font:inherit;cursor:pointer;transition:background .2s}
+.clock .act{font:700 13px var(--display);letter-spacing:.03em;margin-top:2px}
+.clock.running{background:rgba(255,255,255,.14)}
 .clock .lbl{font:700 10px var(--display);letter-spacing:.12em;text-transform:uppercase;opacity:.7}
 .clock .val{font:800 30px var(--display);font-variant-numeric:tabular-nums;line-height:1.1}
 .clock.soon .val{color:var(--gold)}
-.clock.due{background:var(--gold)}
-.clock.due .val,.clock.due .lbl{color:var(--hbk-deep);opacity:1}
+.clock.due{background:var(--gold);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(184,143,76,.4)}}
+@media (prefers-reduced-motion:reduce){.clock.due{animation:none}}
+.clock.due .val,.clock.due .lbl,.clock.due .act{color:var(--hbk-deep);opacity:1}
 .ctrls{display:flex;gap:8px}
 
 .btn{border:0;border-radius:12px;padding:12px 14px;font:700 14px var(--display);letter-spacing:.02em;text-align:center}
@@ -81,7 +87,7 @@ h2 span{font:400 12px var(--body);letter-spacing:0;text-transform:none;color:var
 .toggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .15s}
 .toggle[aria-pressed="true"]{background:var(--hbk)}
 .toggle[aria-pressed="true"]::after{left:25px}
-input[type=text]{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink)}
+input[type=text]{width:100%;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink)}
 .inrow{display:flex;gap:8px}
 .inrow input{flex:1;min-width:0}
 
@@ -95,28 +101,31 @@ input[type=text]{width:100%;padding:11px 12px;border-radius:10px;border:1px soli
 .prow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
 .prow:last-child{border-bottom:0}
 .prow .nm{font-weight:700;min-width:0}
+.nmbtn{background:none;border:0;padding:10px 0;text-align:left;font-weight:700;font-size:16px;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nmbtn span{color:var(--muted);font-weight:400;margin-left:6px}
+.chev{font:800 28px var(--display);color:var(--hbk);line-height:1}
 .hp{display:flex;gap:4px}
-.hp button{width:34px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--soft);color:var(--muted);font:800 11px var(--display)}
+.hp button{width:44px;height:40px;border-radius:9px;border:1px solid var(--line);background:var(--soft);color:var(--muted);font:800 12px var(--display)}
 .hp button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
 .x{background:none;border:0;color:var(--muted);font-size:18px;padding:0 4px}
 
-.pitch{position:relative;aspect-ratio:68/80;max-width:100%;border-radius:16px;overflow:hidden;background:repeating-linear-gradient(180deg,#0a4f95 0 12.5%,#0b5aa6 12.5% 25%)}
+.pitch{position:relative;aspect-ratio:68/72;max-width:100%;border-radius:16px;overflow:hidden;background:repeating-linear-gradient(180deg,#0a4f95 0 12.5%,#0b5aa6 12.5% 25%)}
 .pitch svg.lines{position:absolute;inset:0;width:100%;height:100%}
 .slot{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:3px;background:none;border:0;padding:0;color:#fff;width:84px}
-.chip{width:50px;height:50px;border-radius:50%;background:#fff;color:var(--hbk-deep);display:grid;place-items:center;font:800 15px var(--display);box-shadow:0 2px 8px rgba(0,0,0,.25);position:relative}
+.chip{width:48px;height:48px;border-radius:50%;background:#fff;color:var(--hbk-deep);display:grid;place-items:center;font:800 15px var(--display);box-shadow:0 2px 8px rgba(0,0,0,.25);position:relative}
 .chip.empty{background:rgba(255,255,255,.15);color:#fff;border:2px dashed rgba(255,255,255,.6);box-shadow:none}
 .slot.gk .chip{background:var(--gold);color:#fff}
 .chip .star{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--gold);color:#fff;font-size:10px;display:grid;place-items:center;border:2px solid #fff}
 .slot.out .chip{outline:3px solid #ff8a80;outline-offset:2px}
-.slot .nm{font:700 12px var(--display);text-shadow:0 1px 3px rgba(0,0,0,.5);white-space:nowrap}
-.slot .tm{font-size:11px;opacity:.85;font-variant-numeric:tabular-nums}
+.slot .nm{font:800 14px var(--display);text-shadow:0 1px 3px rgba(0,0,0,.7),0 0 1px rgba(0,0,0,.8);white-space:nowrap}
+.slot .tm{font:700 13px var(--body);font-variant-numeric:tabular-nums;text-shadow:0 1px 3px rgba(0,0,0,.7);margin-top:-2px}
 .poslbl{position:absolute;left:10px;font:700 9px var(--display);letter-spacing:.14em;color:rgba(255,255,255,.45)}
 
 .bench{display:flex;gap:8px;flex-wrap:wrap}
 .bp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;gap:8px;align-items:center;color:var(--ink);text-align:left}
 .bp .dot{width:30px;height:30px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:800 12px var(--display);flex:none}
 .bp.in{border-color:var(--ok);box-shadow:0 0 0 2px color-mix(in srgb,var(--ok) 25%,transparent)}
-.bp small{display:block;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.bp small{display:block;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
 
 .stats{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 12px}
 .srow{display:grid;grid-template-columns:84px 1fr 44px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
@@ -140,18 +149,18 @@ td:first-child{font-weight:700}
   padding:18px max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:grid;gap:14px}
 .sheet h3{font:800 18px var(--display);margin:0}
 .swap{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
-.swap label{font:700 10px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
-.swap select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink);font-weight:700}
+.swap label{font:700 12px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.swap select{width:100%;padding:12px 8px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink);font-weight:700;font-size:16px}
 .swap .arrow{font:800 18px var(--display);color:var(--gold);padding-top:14px}
-.why{font-size:12px;color:var(--muted);grid-column:1/-1;margin-top:-2px}
+.why{font-size:13px;color:var(--muted);grid-column:1/-1;margin-top:-2px}
 .row{display:flex;gap:8px}.row .btn{flex:1}
 .posbars{display:grid;gap:6px}
 .pb{display:grid;grid-template-columns:96px 1fr 50px;gap:8px;align-items:center;font-size:13px}
-.flash{position:fixed;inset:0;z-index:30;pointer-events:none;background:var(--gold);opacity:0}
+.flash{position:fixed;inset:0;z-index:15;pointer-events:none;background:var(--gold);opacity:0}
 .flash.on{animation:fl 1s ease-in-out 3}
 @keyframes fl{50%{opacity:.55}}
 @media (prefers-reduced-motion:reduce){.flash.on{animation:none;opacity:.3}}
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--hbk-deep);color:#fff;padding:10px 16px;border-radius:12px;z-index:40;font-weight:700;font-size:14px;max-width:90vw}
+.toast{position:fixed;left:50%;top:calc(8px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--hbk-deep);color:#fff;padding:10px 16px;border-radius:12px;z-index:40;font-weight:700;font-size:14px;max-width:90vw}
 .empty{text-align:center;padding:28px 16px;display:grid;gap:12px;justify-items:center}
 .empty strong{font:800 18px var(--display)}
 </style></head><body>
@@ -169,10 +178,10 @@ const CFG={url:"https://tvhuhcbkxcxfteziazqi.supabase.co",key:"sb_publishable_Cx
 const POS={MV:"Målvakt",B:"Back",M:"Mittfält",F:"Forward"};
 const PSHORT={MV:"MV",B:"B",M:"M",F:"F"};
 const SLOTS=[
-  {k:"F1",p:"F",x:50,y:17},
-  {k:"M1",p:"M",x:20,y:40},{k:"M2",p:"M",x:50,y:44},{k:"M3",p:"M",x:80,y:40},
-  {k:"B1",p:"B",x:30,y:64},{k:"B2",p:"B",x:70,y:64},
-  {k:"MV",p:"MV",x:50,y:85}
+  {k:"F1",p:"F",x:50,y:13},
+  {k:"M1",p:"M",x:20,y:37},{k:"M2",p:"M",x:50,y:42},{k:"M3",p:"M",x:80,y:37},
+  {k:"B1",p:"B",x:30,y:63},{k:"B2",p:"B",x:70,y:63},
+  {k:"MV",p:"MV",x:50,y:86}
 ];
 const OUTKEYS=SLOTS.filter(s=>s.p!=="MV").map(s=>s.k);
 const slotPos=k=>SLOTS.find(s=>s.k===k).p;
@@ -287,8 +296,8 @@ function header(title,sub,backTo,extra=""){
     <div class="ttl">${esc(title)}<small>${esc(sub)}</small></div>
     <button class="sync" id="sync" data-act="code" type="button"></button></div>${extra}</div></header>`}
 function renderHeaderSync(){const el=$("sync");if(!el)return;
-  const t={local:"Bara denna enhet",on:"Synkad "+(DB.code?"· "+DB.code:""),off:"Offline – sparar lokalt"}[DB.status];
-  el.className="sync "+(DB.status==="on"?"on":DB.status==="off"?"off":"");el.innerHTML=`<i></i>${esc(t)}`}
+  const t=DB.code||"Ingen lagkod",tip={local:"Sparas bara på denna enhet",on:"Synkad med övriga tränare",off:"Offline – sparar lokalt och synkar senare"}[DB.status];
+  el.className="sync "+(DB.status==="on"?"on":DB.status==="off"?"off":"");el.title=tip;el.setAttribute("aria-label","Lagkod: "+t+". "+tip);el.innerHTML=`<i></i>${esc(t)}`}
 
 function render(){
   const v=VIEWS[UI.view]||VIEWS.home;
@@ -311,7 +320,7 @@ home(){
         const ms=matchesOf(s.id).filter(m=>m.teamId===t.id),live=ms.find(m=>m.status!=="done"&&m.status!=="setup");
         return `<button class="teamcard" data-act="team" data-t="${t.id}"><span class="swatch" style="background:${teamColor(t,i)}"></span>
           <span><strong>${esc(t.name)}</strong><span class="muted">${t.players.length} spelare · ${ms.filter(m=>m.status==="done").length} matcher klara</span></span>
-          ${live?`<span style="text-align:right"><span class="pill live">${live.status==="live"?"Pågår":live.status==="break"?"Paus":"Pausad"}</span><br><span class="live" data-clock="${live.id}" data-kind="game"></span></span>`:`<span class="pill">Öppna</span>`}</button>`}).join("")}</div></section>
+          ${live?`<span style="text-align:right"><span class="pill live">${live.status==="live"?"Pågår":live.status==="break"?"Paus":"Pausad"}</span><br><span class="live" data-clock="${live.id}" data-kind="game"></span></span>`:`<span class="chev" aria-hidden="true">›</span>`}</button>`}).join("")}</div></section>
       <div class="grid2"><button class="btn plain" data-act="editday">Ändra dagen</button><button class="btn plain" data-act="closeday">Avsluta dagen</button></div>`;
   }
   return header("HBK P2017","Byten och speltid")+`<main><div class="wrap">${body}
@@ -320,13 +329,12 @@ home(){
 
 roster(){
   const r=roster(),ps=r.players.filter(p=>p.active!==false);
-  const row=p=>`<div class="prow"><span class="nm">${esc(p.name)}${p.guest?'<span class="tag">GÄST</span>':""}</span>
-    <span style="display:flex;gap:6px;align-items:center"><span class="hp">${["MV","B","M","F"].map(g=>`<button data-act="happy" data-p="${p.id}" data-g="${g}" aria-pressed="${(p.happy||[]).includes(g)}" aria-label="${POS[g]}">${g}</button>`).join("")}</span>
-    <button class="x" data-act="rmplayer" data-p="${p.id}" aria-label="Ta bort ${esc(p.name)}">×</button></span></div>`;
+  const row=p=>`<div class="prow"><button class="nmbtn" data-act="editplayer" data-p="${p.id}">${esc(p.name)}${p.guest?'<span class="tag">GÄST</span>':""}<span aria-hidden="true">›</span></button>
+    <span class="hp">${["MV","B","M","F"].map(g=>`<button data-act="happy" data-p="${p.id}" data-g="${g}" aria-pressed="${(p.happy||[]).includes(g)}" aria-label="${POS[g]} – happy place för ${esc(p.name)}">${g}</button>`).join("")}</span></div>`;
   const reg=ps.filter(p=>!p.guest).sort((a,b)=>a.name.localeCompare(b.name,"sv")),gs=ps.filter(p=>p.guest);
   return header("Truppen",reg.length+" spelare · "+gs.length+" gäster","home")+`<main><div class="wrap">
     <div class="card"><div class="inrow"><input type="text" id="newName" placeholder="Förnamn" autocomplete="off"><button class="btn blue" data-act="addplayer">Lägg till</button></div>
-    <p class="muted">Guld = happy place. En spelare kan ha flera.</p></div>
+    <p class="muted">Guld = happy place. En spelare kan ha flera. Tryck på namnet för att ändra eller ta bort.</p></div>
     <section><h2>2017-spelare</h2><div class="card plist" style="padding-block:4px">${reg.map(row).join("")||'<p class="muted">Inga spelare ännu.</p>'}</div></section>
     ${gs.length?`<section><h2>Gäster</h2><div class="card plist" style="padding-block:4px">${gs.map(row).join("")}</div></section>`:""}
   </div></main>`},
@@ -373,10 +381,10 @@ lineup(){
   return header("Startelva",t.name+" · Match "+m.no,"team")+`<main><div class="wrap">
     ${f.MV?"":`<div class="card"><strong>Välj målvakt</strong><p class="muted">Prata med pojkarna först. Appen fördelar sedan resten.</p>
       <div class="chips">${squadOf(m).map(id=>`<button class="pchip" data-act="setgk" data-p="${id}">${esc(PL(id).name)}</button>`).join("")}</div></div>`}
-    ${pitchHTML(m,[],true)}
-    <section><h2>Bänken <span>Tryck på en plats för att byta spelare</span></h2><div class="bench">${bench.map(id=>benchHTML(id,{},false)).join("")||'<p class="muted">Ingen på bänken.</p>'}</div></section>
-    <div class="grid2"><button class="btn plain" data-act="relineup" ${f.MV?"":"disabled"}>Nytt förslag</button><button class="btn blue" data-act="startmatch" ${f.MV?"":"disabled"}>Klar – till match</button></div>
-    <button class="btn danger" data-act="rmmatch">Ta bort matchen</button>
+    ${f.MV?`${pitchHTML(m,[],true)}
+    <section><h2>Bänken <span>Tryck på en plats för att byta</span></h2><div class="bench">${bench.map(id=>benchHTML(id,{},false)).join("")||'<p class="muted">Ingen på bänken.</p>'}</div></section>
+    <div class="grid2"><button class="btn plain" data-act="relineup">Nytt förslag</button><button class="btn blue" data-act="startmatch">Klar – till match</button></div>`:""}
+    <button class="btn danger" data-act="rmmatch" style="margin-top:24px">Ta bort matchen</button>
   </div></main>`},
 
 match(){
@@ -385,10 +393,10 @@ match(){
   const plan=m.status==="done"?[]:suggestSub(m),outs=plan.map(r=>r.out),ins=plan.map(r=>r.in);
   const sec=sessionSec(m.sessionId),bench=squadOf(m).filter(id=>!on.has(id)).sort((a,b)=>sum(sec[a])-sum(sec[b]));
   const done=m.status==="done";
-  const extra=done?"":`<div class="clocks"><div class="clock"><div class="lbl">Period ${m.period}/${m.periods} kvar</div><div class="val" data-clock="${m.id}" data-kind="game"></div></div>
-    <div class="clock" id="subClock"><div class="lbl">Nästa byte</div><div class="val" data-clock="${m.id}" data-kind="sub"></div></div></div>
-    <div class="ctrls"><button class="btn primary" data-act="play">${m.status==="live"?"Pausa":m.status==="break"?"Nästa period":(G(m)>0?"Fortsätt":"Starta")}</button><button class="btn gold" data-act="sub">Byt nu</button></div>`;
-  return header(t.name+" · Match "+m.no,done?"Matchen är klar":"Byte var "+(m.subInt/60).toString().replace(".",",")+" min · "+m.subSize+" åt gången","team",
+  const playTxt=m.status==="live"?"❚❚ Pausa":m.status==="break"?"Nästa period ›":(G(m)>0?"▶ Fortsätt":"▶ Starta");
+  const extra=done?"":`<div class="clocks"><button type="button" class="clock tap${m.status==="live"?" running":""}" data-act="play"><span class="lbl">Period ${m.period} av ${m.periods} · kvar</span><span class="val" data-clock="${m.id}" data-kind="game"></span><span class="act">${playTxt}</span></button>
+    <button type="button" class="clock tap" id="subClock" data-act="sub"><span class="lbl">Nästa byte</span><span class="val" data-clock="${m.id}" data-kind="sub"></span><span class="act">Byt nu ›</span></button></div>`;
+  return header(t.name+" · Match "+m.no,done?"Matchen är klar":"","team",
     extra)+`<main><div class="wrap">
     ${pitchHTML(m,outs,false)}
     <section><h2>Bänken <span>${done?"":"Grön ram = in vid nästa byte"}</span></h2><div class="bench">${bench.map(id=>benchHTML(id,sec,ins.includes(id))).join("")||'<p class="muted">Ingen på bänken.</p>'}</div></section>
@@ -430,7 +438,7 @@ let alarmed=LS.get("hbk.alarmed")||"",breakShown="";
 function tick(force){
   const now=Date.now();
   document.querySelectorAll("[data-clock]").forEach(el=>{const m=DB.docs["match:"+el.dataset.clock];if(!m)return;
-    if(el.dataset.kind==="sub"){const l=subLeft(m,now);el.textContent=l<=0?"BYT!":mmss(l);const c=$("subClock");if(c)c.className="clock"+(l<=0?" due":l<=30?" soon":"")}
+    if(el.dataset.kind==="sub"){const l=subLeft(m,now);el.textContent=l<=0?"BYT!":mmss(l);const c=$("subClock");if(c)c.className="clock tap"+(l<=0?" due":l<=30?" soon":"")}
     else el.textContent=mmss(m.periodLen-periodEl(m,now))});
   if(UI.view!=="match")return;
   const m=DB.docs["match:"+UI.mid];if(!m||m.status!=="live")return;
@@ -492,6 +500,11 @@ const ACT={
   happy(d){const r=roster(),p=r.players.find(x=>x.id===d.p);p.happy=p.happy||[];p.happy=p.happy.includes(d.g)?p.happy.filter(g=>g!==d.g):[...p.happy,d.g];DB.put("roster",r)},
   rmplayer(d){const r=roster(),p=r.players.find(x=>x.id===d.p);
     sheet(`<h3>Ta bort ${esc(p.name)}?</h3><p class="muted">Spelaren försvinner från truppen. Statistik från spelade matcher finns kvar.</p><div class="row"><button class="btn plain" data-act="close">Avbryt</button><button class="btn blue" data-act="rmplayer2" data-p="${p.id}">Ta bort</button></div>`)},
+  editplayer(d){const p=roster().players.find(x=>x.id===d.p);
+    sheet(`<h3>${esc(p.name)}</h3><label class="muted" for="pname">Förnamn</label><input type="text" id="pname" value="${esc(p.name)}" autocomplete="off" data-p="${p.id}">
+      <div class="row"><button class="btn plain" data-act="close">Avbryt</button><button class="btn blue" data-act="renameplayer" data-p="${p.id}">Spara</button></div>
+      <button class="btn danger" data-act="rmplayer" data-p="${p.id}">Ta bort från truppen</button>`)},
+  renameplayer(d){const n=$("pname").value.trim();if(!n)return $("pname").focus();const r=roster();r.players.find(x=>x.id===d.p).name=n;DB.put("roster",r);closeSheet()},
   rmplayer2(d){const r=roster();r.players.find(x=>x.id===d.p).active=false;DB.put("roster",r);closeSheet()},
 
   newday(){const prev=sessions()[0];
@@ -533,7 +546,8 @@ const ACT={
   slotset(d){const m=DB.get("match:"+UI.mid),f=m.segs[0].field,from=Object.keys(f).find(k=>f[k]===d.p);
     if(from)f[from]=f[d.k]||null;f[d.k]=d.p||null;DB.put("match:"+m.id,m);closeSheet()},
   startmatch(){const m=DB.get("match:"+UI.mid);m.status="paused";m.lastSubG=0;DB.put("match:"+m.id,m);go("match")},
-  rmmatch(){DB.del("match:"+UI.mid);go("team")},
+  rmmatch(){sheet(`<h3>Ta bort matchen?</h3><p class="muted">Startelvan och all speltid i matchen försvinner.</p><div class="row"><button class="btn plain" data-act="close">Avbryt</button><button class="btn blue" data-act="rmmatch2">Ta bort</button></div>`)},
+  rmmatch2(){DB.del("match:"+UI.mid);go("team")},
 
   play(){unlockAudio();const m=DB.get("match:"+UI.mid);
     if(m.status==="live"){m.clock={base:periodEl(m),since:null};m.status="paused";releaseWake()}
@@ -586,7 +600,7 @@ const ACT={
 document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(!b||b.disabled)return;const f=ACT[b.dataset.act];if(f){e.preventDefault();f(b.dataset,b)}});
 document.addEventListener("input",e=>{const t=e.target;if(t.dataset.actInput==="tname"&&UI.draft){UI.draft.teams[+t.dataset.i].name=t.value}});
 document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const id=e.target.id;
-  if(id==="newName")ACT.addplayer();else if(id&&id.startsWith("guest"))ACT.dguest({i:id.slice(5)});else if(id==="codeIn")ACT.savecode()});
+  if(id==="newName")ACT.addplayer();else if(id==="pname")ACT.renameplayer({p:e.target.dataset.p});else if(id&&id.startsWith("guest"))ACT.dguest({i:id.slice(5)});else if(id==="codeIn")ACT.savecode()});
 
 /* ===== Start ===== */
 DB.load();

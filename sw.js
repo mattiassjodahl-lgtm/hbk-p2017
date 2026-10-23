@@ -1,4 +1,4 @@
-const C="hbk17-v1",SHELL=["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png",
+const C="hbk17-v2",SHELL=["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png",
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
